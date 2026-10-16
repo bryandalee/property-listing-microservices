@@ -1,0 +1,8 @@
+# Store text files with LF in the repository, whatever OS they were edited on.
+* text=auto
+
+# The Gradle wrapper script needs LF to run on Linux and in Docker; Windows batch files need CRLF.
+gradlew text eol=lf
+*.bat text eol=crlf
+
+*.jar binary
