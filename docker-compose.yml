@@ -1,0 +1,18 @@
+services:
+  listing-service:
+    build: ./listing-service
+    # No published port: only the public API is reachable from outside.
+
+  user-service:
+    build: ./user-service
+
+  public-api:
+    build: ./public-api
+    ports:
+      - "8080:8080"
+    environment:
+      SERVICES_LISTING_URL: http://listing-service:8081
+      SERVICES_USER_URL: http://user-service:8082
+    depends_on:
+      - listing-service
+      - user-service
